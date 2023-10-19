@@ -23,7 +23,7 @@ const CalculatorPage: React.FC = () => {
         placeholder="Digite o primeiro número, Ex: 1"
         type="number"
         value={firstNumber}
-        onChange={(e) => setFirstNumber(e)}
+        onChange={(e) => setFirstNumber(parseFloat(e.target.value))}
         maxLength={10}
       />
       <Input
@@ -31,7 +31,7 @@ const CalculatorPage: React.FC = () => {
         placeholder="Digite o segundo número, Ex: 2"
         type="number"
         value={secondNumber}
-        onChange={(e) => setSecondNumber(e)}
+        onChange={(e) => setSecondNumber(parseFloat(e.target.value))}
         maxLength={10}
       />
       <Button label="Adicionar" onClick={handleAdd} />

@@ -5,7 +5,7 @@ const Button: React.FC<ButtonProps> = ({ label, onClick, className }) => {
   return (
     <button
       onClick={onClick}
-      className={`flex justify-center items-center bg-white border-2 text-gray-500 text-sm ${className}`}
+      className={`flex justify-center items-center bg-green-600 border-2 text-white text-sm uppercase ${className}`}
     >
       {label}
     </button>
