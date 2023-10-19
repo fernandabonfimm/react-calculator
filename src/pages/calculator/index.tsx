@@ -1,19 +1,19 @@
 import React from "react";
 import Input from "../../components/input";
 import Button from "../../components/button";
+import { useCalculatorContext } from "../../contexts/calculatorContext";
+import { CalculatorProps } from "../../interfaces/calculatorProps";
+import Table from "../../components/table";
 
 const CalculatorPage: React.FC = () => {
-  const [firstNumber, setFirstNumber] = React.useState<string>("");
-  const [secondNumber, setSecondNumber] = React.useState<string>("");
-
-  const handleAdd = () => {
-    const result = Number(firstNumber) + Number(secondNumber);
-    alert(`O resultado da soma é ${result}`);
-  };
-
-  React.useEffect(() => {
-    console.log("firstNumber", firstNumber);
-  }, [firstNumber]);
+  const {
+    firstNumber,
+    setFirstNumber,
+    secondNumber,
+    setSecondNumber,
+    handleAdd,
+    calculations
+  } = useCalculatorContext() as CalculatorProps;
 
   return (
     <div className="flex flex-col bg-white gap-10 p-10 dark:bg-black">
@@ -23,7 +23,7 @@ const CalculatorPage: React.FC = () => {
         placeholder="Digite o primeiro número, Ex: 1"
         type="number"
         value={firstNumber}
-        onChange={(e) => setFirstNumber(e.target.value)}
+        onChange={(e) => setFirstNumber(e)}
         maxLength={10}
       />
       <Input
@@ -31,10 +31,13 @@ const CalculatorPage: React.FC = () => {
         placeholder="Digite o segundo número, Ex: 2"
         type="number"
         value={secondNumber}
-        onChange={(e) => setSecondNumber(e.target.value)}
+        onChange={(e) => setSecondNumber(e)}
         maxLength={10}
       />
       <Button label="Adicionar" onClick={handleAdd} />
+      <div>
+        <Table calculations={calculations} />
+      </div>
     </div>
   );
 };
