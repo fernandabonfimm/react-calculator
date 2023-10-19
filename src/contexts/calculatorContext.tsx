@@ -19,30 +19,32 @@ export const useCalculatorContext = () => {
 export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [firstNumber, setFirstNumber] = React.useState<string>("");
-  const [secondNumber, setSecondNumber] = React.useState<string>("");
+  const [firstNumber, setFirstNumber] = React.useState<number>(0);
+  const [secondNumber, setSecondNumber] = React.useState<number>(0);
   const [result, setResult] = React.useState<number>(0);
   const [calculations, setCalculations] = React.useState<TableProps[]>([]);
 
   const handleAdd = () => {
-    const result = Number(firstNumber) + Number(secondNumber);
+    const result = firstNumber + secondNumber;
     alert(`O resultado da soma é ${result}`);
     setResult(result);
     localStorage.setItem("Soma", String(result));
     localStorage.setItem("1Numero", String(firstNumber));
     localStorage.setItem("2Numero", String(secondNumber));
     // setCalculations calcula o resultado e adiciona na tabela
-    setCalculations([...calculations, { firstNumber, secondNumber, result }]);
+    setCalculations([ ...calculations, { firstNumber, secondNumber, result }]);
   };
 
   React.useEffect(() => {
     const savedResult = localStorage.getItem("1Numero");
+    const convert1 = Number(savedResult);
     if (savedResult) {
-      setFirstNumber(savedResult);
+      setFirstNumber(convert1);
     }
     const savedResultSecondNumber = localStorage.getItem("2Numero");
+    const convert2 = Number(savedResultSecondNumber);
     if (savedResultSecondNumber) {
-      setSecondNumber(savedResultSecondNumber);
+      setSecondNumber(convert2);
     }
 
     const savedResultResult = localStorage.getItem("Soma");

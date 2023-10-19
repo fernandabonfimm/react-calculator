@@ -1,6 +1,6 @@
 export interface TableProps {
-  firstNumber: string;
-  secondNumber: string;
+  firstNumber: number;
+  secondNumber: number;
   result: number;
 }
 
