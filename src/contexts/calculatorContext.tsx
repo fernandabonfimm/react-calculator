@@ -1,5 +1,5 @@
 import React from "react";
-import {CalculatorProps} from "../interfaces/calculatorProps";
+import { CalculatorProps } from "../interfaces/calculatorProps";
 import { TableProps } from "../interfaces/tableProps";
 
 const CalculatorContext = React.createContext<CalculatorProps | undefined>(
@@ -32,7 +32,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.setItem("1Numero", String(firstNumber));
     localStorage.setItem("2Numero", String(secondNumber));
     // setCalculations calcula o resultado e adiciona na tabela
-    setCalculations([ ...calculations, { firstNumber, secondNumber, result }]);
+    setCalculations([...calculations, { firstNumber, secondNumber, result }]);
   };
 
   React.useEffect(() => {
@@ -62,7 +62,7 @@ export const CalculatorProvider: React.FC<{ children: React.ReactNode }> = ({
         setSecondNumber,
         handleAdd,
         result,
-        calculations
+        calculations,
       }}
     >
       {children}
